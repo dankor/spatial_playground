@@ -1,0 +1,45 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: postgis/postgis:16-master
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: spatial
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./shp:/shp/
+      - ./db:/docker-entrypoint-initdb.d/
+      - database_volume:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: 123
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+  dbt:
+    container_name: dbt
+    build:
+      context: .
+      dockerfile: Dockerfile_dbt
+    volumes:
+      - ./app:/app/
+      - ./profiles.yml:/root/.dbt/profiles.yml
+
+volumes:
+  database_volume:
+  pgadmin-data:
+

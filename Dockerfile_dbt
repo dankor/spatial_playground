@@ -1,0 +1,9 @@
+FROM xemuliam/dbt:1.6
+
+WORKDIR /app/spatial
+
+RUN pip install dbt-postgres
+
+RUN apt update && apt install -y postgresql-client
+
+CMD ["sh", "-c", "while true; do sleep 10000; done"]

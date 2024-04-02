@@ -1,0 +1,11 @@
+postgres:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: db
+      port: 5432
+      user: root
+      pass: '123'
+      dbname: spatial
+      schema: public
