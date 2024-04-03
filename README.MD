@@ -1,13 +1,13 @@
 # Intro
 
-This is a task to convert the spatial data into tabular star schema. 
+This is a task to convert the spatial data into a tabular star schema. 
 
 # Design 
 
-There is a Postgres withpostGIO extention, including shp2pgsql to handle spatial data.
-Dbt to set up views for star schema.
-And the docker compose to make it easy to deliver.
-Neither orcestartion, nor ETL was implented within this project.
+- There is a Postgres with postGIO extension, including shp2pgsql to handle spatial data.
+- Dbt to set up views for star schema.
+- And the docker compose to make it easy to deliver.
+- Neither orchestration, nor ETL was implemented within this project.
 
 # Structure
 
@@ -20,10 +20,12 @@ Neither orcestartion, nor ETL was implented within this project.
 # How to run
 
 Just install docker locally and run:
+
 ```bash
 docker-compose up -d
 ```
-After sucessful setup you should be able to reach the database, see profiles.yml for the credentionals.
+
+After successful setup you should be able to reach the database, see profiles.yml for the credentials.
 
 In order to import files you have to execute the script:
 
